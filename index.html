@@ -1,37 +1,39 @@
 <!DOCTYPE html>
 <html lang="en-US">
+   
 <script src="angular.min.js"></script>
 
 <script>
-var app = angular.module("myShoppingList", []); 
-app.controller("myCtrl", function($scope) {
-    $scope.products = ["Milk", "Bread", "Cheese"];
-    $scope.addItem = function () {$scope.errortext = "";
-        if (!$scope.addMe) {return;}
-        if ($scope.products.indexOf($scope.addMe) == -1) {
-            $scope.products.push($scope.addMe);
-        } else {
-            $scope.errortext = "The item is already in your shopping list.";
-        }
-        $scope.products.push($scope.addMe);};
-    $scope.removeItem = function (x) {
-        $scope.errortext = ""; 
-        $scope.products.splice(x, 1);};
-});
+    var app = angular.module("myShoppingList", []); 
+    app.controller("myCtrl", function($scope) {
+        $scope.products = ["Milk", "Bread", "Cheese"];
+        $scope.addItem = function () {$scope.errortext = "";
+            if (!$scope.addMe) {return;}
+            if ($scope.products.indexOf($scope.addMe) == -1) {
+               $scope.products.push($scope.addMe);
+            } else {
+               $scope.errortext = "The item is already in your shopping list.";
+            }
+            $scope.products.push($scope.addMe);};
+            $scope.removeItem = function (x) {
+            $scope.errortext = ""; 
+            $scope.products.splice(x, 1);};
+    });
 </script>
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+<body style="width:320px; ">
 
-<body>
-
-<div ng-app="myShoppingList" ng-controller="myCtrl">
+<div ng-app="myShoppingList" ng-controller="myCtrl" style="width: 320px" >
+    <h3 style="font-style:italic;">Shopping List</h3>
     <ul>
         <li ng-repeat="x in products">
             {{x}} 
-            <span ng-click="removeItem($index)">&times</span>
+            <span style="color:red;" ng-click="removeItem($index)">&times</span>
         </li>
     </ul>
     <input ng-model="addMe"/>
     <button ng-click="addItem()">Add</button>
-    <p>{{errortext}}</p>
+    <p style="color:red">{{errortext}}</p>
 </div>
 <p>Add items to shoppping list here</p>
 
